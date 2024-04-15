@@ -10,10 +10,12 @@ import java.util.Set;
 
 public class RatioCalculator {
 
+    public static String FILE_PATH = "src/main/resources/";
+
     public static void main(String[] args) {
         try {
-            String goldenPath = "E:\\Workplace\\sar\\src\\main\\java\\json\\Output.json";
-            String comparisonPath = "E:\\Workplace\\sar\\src\\main\\java\\json\\compare.json";
+            String goldenPath = FILE_PATH + "Output.json";
+            String comparisonPath = FILE_PATH + "compare.json";
 
             String goldenContent = new String(Files.readAllBytes(Paths.get(goldenPath)));
             JSONObject goldenStandard = new JSONObject(goldenContent);
