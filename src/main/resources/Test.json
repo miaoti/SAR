@@ -36,7 +36,7 @@
             {
               "key": "http.status_code",
               "type": "string",
-              "value": "200"
+              "value": "400"
             }
           ],
           "logs": [],
