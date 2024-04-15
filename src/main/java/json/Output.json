@@ -1,0 +1,41 @@
+{"operationNames": [{
+  "numSpans": 8,
+  "operationName": "ts-inside-payment-service.default.svc.cluster.local:18673/*",
+  "numSpansWith400": 0,
+  "child": [
+    {
+      "returnCode": "200",
+      "serviceName": "ts-inside-payment-service",
+      "child": []
+    },
+    {
+      "returnCode": "200",
+      "serviceName": "ts-order-other-service",
+      "child": [{
+        "returnCode": "200",
+        "serviceName": "ts-order-other-service",
+        "child": []
+      }]
+    },
+    {
+      "returnCode": "200",
+      "serviceName": "ts-payment-service",
+      "child": []
+    },
+    {
+      "returnCode": "200",
+      "serviceName": "ts-payment-service",
+      "child": []
+    },
+    {
+      "returnCode": "200",
+      "serviceName": "ts-order-other-service",
+      "child": []
+    },
+    {
+      "returnCode": "200",
+      "serviceName": "ts-order-other-service",
+      "child": []
+    }
+  ]
+}]}
