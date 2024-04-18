@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "traceID": "ebc0f10636a530d26319ef8b962b625e",
+      "spans": [
+        {
+          "traceID": "ebc0f10636a530d26319ef8b962b625e",
+          "spanID": "c59b7132392549e8",
+          "operationName": "ts-inside-payment-service.default.svc.cluster.local:18673/*",
+          "references": [],
+          "tags": [
+
+            {
+              "key": "http.status_code",
+              "type": "string",
+              "value": "200"
+            }
+          ],
+          "logs": [],
+          "processID": "p1",
+          "warnings": null
+        },
+        {
+          "traceID": "ebc0f10636a530d26319ef8b962b625e",
+          "spanID": "a0cf6e4349a342c1",
+          "operationName": "ts-inside-payment-service.default.svc.cluster.local:18673/*",
+          "references": [
+            {
+              "refType": "CHILD_OF",
+              "traceID": "ebc0f10636a530d26319ef8b962b625e",
+              "spanID": "c59b7132392549e8"
+            }
+          ],
+          "tags": [
+
+            {
+              "key": "http.status_code",
+              "type": "string",
+              "value": "400"
+            }
+          ],
+          "logs": [],
+          "processID": "p2",
+          "warnings": null
+        },
+        {
+          "traceID": "ebc0f10636a530d26319ef8b962b625e",
+          "spanID": "4c72d4005fd847fc",
+          "operationName": "ts-order-other-service.default.svc.cluster.local:12032/*",
+          "references": [
+            {
+              "refType": "CHILD_OF",
+              "traceID": "ebc0f10636a530d26319ef8b962b625e",
+              "spanID": "c59b7132392549e8"
+            }
+          ],
+          "tags": [
+
+            {
+              "key": "http.status_code",
+              "type": "string",
+              "value": "200"
+            }
+          ],
+          "logs": [],
+          "processID": "p2",
+          "warnings": null
+        }
+      ],
+      "processes": {
+        "p1": {
+          "serviceName": "ts-ui-dashboard.default",
+          "tags": [
+            {
+              "key": "ip",
+              "type": "string",
+              "value": "172.17.0.29"
+            }
+          ]
+        },
+        "p2": {
+          "serviceName": "ts-inside-payment-service.default",
+          "tags": [
+            {
+              "key": "ip",
+              "type": "string",
+              "value": "172.17.0.93"
+            }
+          ]
+        },
+        "p3": {
+          "serviceName": "ts-order-other-service.default",
+          "tags": [
+            {
+              "key": "ip",
+              "type": "string",
+              "value": "172.17.0.97"
+            }
+          ]
+        },
+        "p4": {
+          "serviceName": "ts-payment-service.default",
+          "tags": [
+            {
+              "key": "ip",
+              "type": "string",
+              "value": "172.17.0.99"
+            }
+          ]
+        }
+      },
+      "warnings": null
+    }
+  ],
+  "errors": null
+}
