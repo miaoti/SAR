@@ -99,6 +99,7 @@ public class JsonProcessor {
     private JSONObject buildOutputJson(String rootSpanID) {
         JSONObject rootSpan = spanDetails.get(rootSpanID);
         buildTree(rootSpanID, rootSpan);
+        System.out.println(rootSpan);
         return new JSONObject()
                 .put("numSpans", numSpans)
                 .put("numSpansWith400", numSpansWith400)
