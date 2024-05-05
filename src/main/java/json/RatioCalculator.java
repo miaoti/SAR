@@ -59,7 +59,7 @@ public class RatioCalculator {
                 int comparisonNumSpansWith400 = comparisonOperation.getInt("numSpansWith400");
 
                 double SAR = (double) comparisonNumSpans / goldenNumSpans;
-                double PSAR = (double) (comparisonNumSpans - comparisonNumSpansWith400) / goldenNumSpans;
+                double PSAR = (double) (comparisonNumSpansWith400) / goldenNumSpans;
                 double threshold = calculateDynamicThreshold(goldenOperation);
 
                 if (SAR > bestSAR) {
