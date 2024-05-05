@@ -62,8 +62,9 @@ public class JsonProcessor {
             String returnCode = "200";
 
             for (int j = 0; j < tags.length(); j++) {
-                if (tags.getJSONObject(j).has("http.status_code")) {
-                    returnCode = tags.getJSONObject(j).getString("http.status_code");
+                JSONObject tag = tags.getJSONObject(j);
+                if (tag.has("key") && tag.getString("key").equals("http.status_code")) {
+                    returnCode = tags.getJSONObject(j).get("value").toString();
                 }
             }
 
