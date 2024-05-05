@@ -56,7 +56,15 @@ public class JsonProcessor {
         for (int i = 0; i < spans.length(); i++) {
             JSONObject span = spans.getJSONObject(i);
             String spanID = span.getString("spanID");
-            String returnCode = span.getJSONArray("tags").getJSONObject(0).getString("value");
+            JSONArray tags = span.getJSONArray("tags");
+
+            String returnCode = "200";
+
+            for (int j = 0; j < tags.length(); j++) {
+                if (tags.getJSONObject(j).has("http.status_code")) {
+                    returnCode = tags.getJSONObject(j).getString("http.status_code");
+                }
+            }
 
             if (returnCode.startsWith("5")) {
                 continue;
