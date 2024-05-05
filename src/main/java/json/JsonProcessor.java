@@ -56,15 +56,7 @@ public class JsonProcessor {
         for (int i = 0; i < spans.length(); i++) {
             JSONObject span = spans.getJSONObject(i);
             String spanID = span.getString("spanID");
-            JSONArray tags = span.getJSONArray("tags");
-
-            String returnCode = "200";
-
-            for (int j = 0; j < tags.length(); j++) {
-                if (tags.getJSONObject(j).has("http.status_code")) {
-                    returnCode = tags.getJSONObject(j).getString("http.status_code");
-                }
-            }
+            String returnCode = span.getJSONArray("tags").getJSONObject(0).getString("value");
 
             if (returnCode.startsWith("5")) {
                 continue;
@@ -87,8 +79,6 @@ public class JsonProcessor {
             JSONArray references = span.getJSONArray("references");
             for (int j = 0; j < references.length(); j++) {
                 JSONObject reference = references.getJSONObject(j);
-//                System.out.println(reference);
-//                System.out.println(reference.getString("spanID"));
                 childrenMap.get(reference.getString("spanID")).add(spanID);
             }
 
@@ -109,6 +99,7 @@ public class JsonProcessor {
     private JSONObject buildOutputJson(String rootSpanID) {
         JSONObject rootSpan = spanDetails.get(rootSpanID);
         buildTree(rootSpanID, rootSpan);
+        System.out.println(rootSpan);
         return new JSONObject()
                 .put("numSpans", numSpans)
                 .put("numSpansWith400", numSpansWith400)
