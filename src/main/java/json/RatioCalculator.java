@@ -15,7 +15,7 @@ public class RatioCalculator {
     public static void main(String[] args) {
         try {
             String goldenPath = FILE_PATH + "order_trace_golden.json";
-            String comparisonPath = FILE_PATH + "order_trace_unusual_compare.json";
+            String comparisonPath = FILE_PATH + "order_trace_diff_compare.json";
 
             JSONObject goldenStandard = new JSONObject(new String(Files.readAllBytes(Paths.get(goldenPath))));
             JSONObject comparisonInput = new JSONObject(new String(Files.readAllBytes(Paths.get(comparisonPath))));
@@ -77,9 +77,9 @@ public class RatioCalculator {
             JSONObject result = new JSONObject();
 
             JSONObject sar = new JSONObject();
-            sar.put("BestSAR", bestSAR);
+            sar.put("SAR", bestSAR);
             sar.put("Threshold", bestThreshold);
-            sar.put("BestPSAR", bestPSAR);
+            sar.put("PSAR", bestPSAR);
 
             result.put("Result", sar);
 
