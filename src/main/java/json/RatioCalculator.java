@@ -14,8 +14,8 @@ public class RatioCalculator {
 
     public static void main(String[] args) {
         try {
-            String goldenPath = FILE_PATH + "Output.json";
-            String comparisonPath = FILE_PATH + "compare.json";
+            String goldenPath = FILE_PATH + "order_trace_golden.json";
+            String comparisonPath = FILE_PATH + "order_trace_diff_compare.json";
 
             JSONObject goldenStandard = new JSONObject(new String(Files.readAllBytes(Paths.get(goldenPath))));
             JSONObject comparisonInput = new JSONObject(new String(Files.readAllBytes(Paths.get(comparisonPath))));
@@ -59,7 +59,7 @@ public class RatioCalculator {
                 int comparisonNumSpansWith400 = comparisonOperation.getInt("numSpansWith400");
 
                 double SAR = (double) comparisonNumSpans / goldenNumSpans;
-                double PSAR = (double) (comparisonNumSpans - comparisonNumSpansWith400) / goldenNumSpans;
+                double PSAR = (double) (comparisonNumSpansWith400) / goldenNumSpans;
                 double threshold = calculateDynamicThreshold(goldenOperation);
 
                 if (SAR > bestSAR) {
@@ -73,6 +73,17 @@ public class RatioCalculator {
         if (!unusualPath) {
             System.out.println("Best SAR: " + bestSAR + " (Threshold: " + bestThreshold + ")");
             System.out.println("Best PSAR: " + bestPSAR);
+
+            JSONObject result = new JSONObject();
+
+            JSONObject sar = new JSONObject();
+            sar.put("SAR", bestSAR);
+            sar.put("Threshold", bestThreshold);
+            sar.put("PSAR", bestPSAR);
+
+            result.put("Result", sar);
+
+            System.out.println(result);
         } else {
             System.out.println("Unusual Path Happens in all matches.");
         }

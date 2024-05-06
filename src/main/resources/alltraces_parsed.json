@@ -1,0 +1,10 @@
+{"operationNames": [{
+  "numSpans": 2,
+  "operationName": "ts-order-other-service.default.svc.cluster.local:12032/*",
+  "numSpansWith400": 0,
+  "child": [{
+    "returnCode": "200",
+    "serviceName": "ts-order-other-service",
+    "child": []
+  }]
+}]}

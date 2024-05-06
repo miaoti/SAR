@@ -1,14 +1,15 @@
 package json;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class JsonProcessor {
 
@@ -56,7 +57,16 @@ public class JsonProcessor {
         for (int i = 0; i < spans.length(); i++) {
             JSONObject span = spans.getJSONObject(i);
             String spanID = span.getString("spanID");
-            String returnCode = span.getJSONArray("tags").getJSONObject(0).getString("value");
+            JSONArray tags = span.getJSONArray("tags");
+
+            String returnCode = "200";
+
+            for (int j = 0; j < tags.length(); j++) {
+                JSONObject tag = tags.getJSONObject(j);
+                if (tag.has("key") && tag.getString("key").equals("http.status_code")) {
+                    returnCode = tags.getJSONObject(j).get("value").toString();
+                }
+            }
 
             if (returnCode.startsWith("5")) {
                 continue;
